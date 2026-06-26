@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Submitted - ReportFraud.ftc.gov</title>
+    <link rel="stylesheet" href="ftc-styles.css">
+</head>
+<body>
+    <!-- USA Banner -->
+    <div class="usa-banner">
+        <div class="usa-banner-inner">
+            <span>An official website of the United States government</span>
+            <div class="usa-banner-links">
+                <a href="#">Español</a>
+                <a href="https://www.ftc.gov">FTC.gov</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- FTC Header -->
+    <header class="ftc-header">
+        <div class="ftc-header-inner">
+            <div class="ftc-logo">
+                <svg class="ftc-seal" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" fill="#003366" stroke="#fff" stroke-width="3"/>
+                    <text x="50" y="45" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">FTC</text>
+                    <text x="50" y="60" text-anchor="middle" fill="#fff" font-size="8">FEDERAL TRADE</text>
+                    <text x="50" y="72" text-anchor="middle" fill="#fff" font-size="8">COMMISSION</text>
+                </svg>
+                <div class="ftc-branding">
+                    <h1>Federal Trade Commission</h1>
+                    <p>ReportFraud.ftc.gov</p>
+                </div>
+            </div>
+            <nav class="ftc-nav">
+                <a href="index.html">Home</a>
+                <a href="report.html">File a Report</a>
+                <a href="#">Track Report</a>
+                <a href="#">FAQs</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Confirmation Container -->
+    <div class="confirmation-container">
+        <div class="confirmation-card">
+            <svg class="success-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="45" fill="#4caf50"/>
+                <path d="M30 50 L45 65 L70 35" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <h1>Report Submitted!</h1>
+            <p>Thank you for your report. Your information helps protect others from fraud.</p>
+            
+            <div class="confirmation-number">
+                <h3>Your Confirmation Number</h3>
+                <div class="number" id="confirmationNumber">FTC-2024-XXXXXX</div>
+                <p style="font-size: 14px; margin-top: 10px;">Save this number for your records</p>
+            </div>
+
+            <div class="next-steps">
+                <h3>Next Steps</h3>
+                <ul>
+                    <li><strong>Save Your Confirmation Number</strong> - Keep this number safe for future reference</li>
+                    <li><strong>Protect Your Accounts</strong> - Contact your bank and place a fraud alert if needed</li>
+                    <li><strong>Change Compromised Passwords</strong> - Update passwords for any affected accounts</li>
+                    <li><strong>Report to Other Agencies</strong> - Consider filing reports with local police or FBI IC3</li>
+                </ul>
+            </div>
+
+            <div class="confirmation-actions">
+                <a href="agent.html?ref=confirmation" class="btn-primary">Select Your FTC Agent →</a>
+                <a href="index.html" class="btn-white">Return to Home</a>
+            </div>
+
+            <div class="info-box">
+                <h4>How the FTC Uses Your Report</h4>
+                <p>Your report is added to the Consumer Sentinel Network, a secure database that is accessible to over 3,000 law enforcement partners. This helps identify fraud patterns and stop scammers.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-column">
+                <h4>Federal Trade Commission</h4>
+                <ul>
+                    <li><a href="https://www.ftc.gov">FTC.gov</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">News</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Report Fraud</h4>
+                <ul>
+                    <li><a href="report.html">File a Report</a></li>
+                    <li><a href="#">Track Your Report</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Resources</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Consumer Information</a></li>
+                    <li><a href="#">Business Guidance</a></li>
+                    <li><a href="#">Legal Resources</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Federal Trade Commission. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Get report number from URL or localStorage
+        const urlParams = new URLSearchParams(window.location.search);
+        let reportNumber = urlParams.get('reportNumber');
+
+        if (!reportNumber) {
+            const savedReport = localStorage.getItem('ftcReport');
+            if (savedReport) {
+                const reportData = JSON.parse(savedReport);
+                reportNumber = reportData.reportNumber;
+            }
+        }
+
+        if (reportNumber) {
+            document.getElementById('confirmationNumber').textContent = reportNumber;
+        }
+    </script>
+</body>
+</html>

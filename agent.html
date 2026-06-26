@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Your FTC Agent - ReportFraud.ftc.gov</title>
+    <link rel="stylesheet" href="ftc-styles.css">
+</head>
+<body>
+    <!-- USA Banner -->
+    <div class="usa-banner">
+        <div class="usa-banner-inner">
+            <span>An official website of the United States government</span>
+            <div class="usa-banner-links">
+                <a href="#">Español</a>
+                <a href="https://www.ftc.gov">FTC.gov</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- FTC Header -->
+    <header class="ftc-header">
+        <div class="ftc-header-inner">
+            <div class="ftc-logo">
+                <svg class="ftc-seal" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" fill="#003366" stroke="#fff" stroke-width="3"/>
+                    <text x="50" y="45" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">FTC</text>
+                    <text x="50" y="60" text-anchor="middle" fill="#fff" font-size="8">FEDERAL TRADE</text>
+                    <text x="50" y="72" text-anchor="middle" fill="#fff" font-size="8">COMMISSION</text>
+                </svg>
+                <div class="ftc-branding">
+                    <h1>Federal Trade Commission</h1>
+                    <p>ReportFraud.ftc.gov</p>
+                </div>
+            </div>
+            <nav class="ftc-nav">
+                <a href="index.html">Home</a>
+                <a href="report.html">File a Report</a>
+                <a href="#">Track Report</a>
+                <a href="#">FAQs</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Agent Container -->
+    <div class="agent-container">
+        <!-- Success Banner -->
+        <div class="success-banner" id="successBanner">
+            <h2>Report Submitted Successfully</h2>
+            <p>Confirmation Number: <span id="bannerReportNumber">FTC-2024-XXXXXX</span></p>
+        </div>
+
+        <!-- Hero -->
+        <div class="agent-hero">
+            <h1>Select Your FTC Agent</h1>
+            <p>Choose a specialized agent to help with your fraud case. Our agents are experienced in handling various types of fraud and will guide you through the next steps.</p>
+        </div>
+
+        <!-- Agents Grid -->
+        <div class="agents-grid">
+            <!-- Agent 1 - Benjamin Aron (Available) -->
+            <div class="agent-card">
+                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=300&fit=crop" alt="Benjamin Aron" class="agent-photo">
+                <div class="agent-info">
+                    <span class="agent-badge available">Senior Agent</span>
+                    <div class="agent-status">
+                        <div class="status-dot online"></div>
+                        <span>Online — Available</span>
+                    </div>
+                    <h3>Benjamin Aron</h3>
+                    <div class="agent-details">
+                        <p><strong>Agent ID:</strong> FTC-2024-001</p>
+                        <p><strong>Badge ID:</strong> BA-001</p>
+                        <p><strong>Experience:</strong> 12 years</p>
+                        <p><strong>Email:</strong> benjamin.aron@ftc.gov</p>
+                        <p><strong>Specialty:</strong> Fraud Investigation</p>
+                        <p><strong>Phone:</strong> (202) 643-9290</p>
+                        <p><strong>Cases Handled:</strong> 1,240+</p>
+                    </div>
+                    <div class="agent-actions">
+                        <button class="btn-time" onclick="openTimeModal('Benjamin Aron', 'benjamin.aron@ftc.gov')">Select Appointment Time</button>
+                        <button class="btn-schedule" onclick="scheduleAppointment('Benjamin Aron', 'benjamin.aron@ftc.gov')">Schedule Appointment</button>
+                        <button class="btn-assign" onclick="agreeAndAssign('Benjamin Aron', 'benjamin.aron@ftc.gov')">I Agree — Assign This Agent</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Agent 2 - Sarah Johnson (Busy) -->
+            <div class="agent-card">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=300&fit=crop" alt="Sarah Johnson" class="agent-photo">
+                <div class="agent-info">
+                    <span class="agent-badge busy">Busy</span>
+                    <div class="agent-status">
+                        <div class="status-dot busy"></div>
+                        <span>Busy — Not Available</span>
+                    </div>
+                    <h3>Sarah Johnson</h3>
+                    <div class="agent-details">
+                        <p><strong>Agent ID:</strong> FTC-2024-002</p>
+                        <p><strong>Experience:</strong> 8 years</p>
+                        <p><strong>Email:</strong> sarah.johnson@ftc.gov</p>
+                        <p><strong>Specialty:</strong> Cybercrime & Digital Fraud</p>
+                        <p><strong>Phone:</strong> 1-800-382-4357</p>
+                        <p><strong>Cases Handled:</strong> 890+</p>
+                    </div>
+                    <div class="agent-actions">
+                        <button disabled>Currently Unavailable</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Agent 3 - Robert Davis (Busy) -->
+            <div class="agent-card">
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=300&fit=crop" alt="Robert Davis" class="agent-photo">
+                <div class="agent-info">
+                    <span class="agent-badge busy">Busy</span>
+                    <div class="agent-status">
+                        <div class="status-dot busy"></div>
+                        <span>Busy — Not Available</span>
+                    </div>
+                    <h3>Robert Davis</h3>
+                    <div class="agent-details">
+                        <p><strong>Agent ID:</strong> FTC-2024-003</p>
+                        <p><strong>Experience:</strong> 10 years</p>
+                        <p><strong>Email:</strong> robert.davis@ftc.gov</p>
+                        <p><strong>Specialty:</strong> Consumer Protection</p>
+                        <p><strong>Phone:</strong> 1-877-382-4357</p>
+                        <p><strong>Cases Handled:</strong> 1,100+</p>
+                    </div>
+                    <div class="agent-actions">
+                        <button disabled>Currently Unavailable</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Time Selection -->
+    <div class="modal-overlay" id="timeModal">
+        <div class="modal-box">
+            <h3>Select Appointment Time</h3>
+            <div class="form-group">
+                <label for="appointmentDate">Date</label>
+                <input type="date" id="appointmentDate">
+            </div>
+            <div class="form-group">
+                <label for="appointmentTime">Time</label>
+                <select id="appointmentTime">
+                    <option value="09:00">9:00 AM</option>
+                    <option value="10:00">10:00 AM</option>
+                    <option value="11:00">11:00 AM</option>
+                    <option value="12:00">12:00 PM</option>
+                    <option value="13:00">1:00 PM</option>
+                    <option value="14:00">2:00 PM</option>
+                    <option value="15:00">3:00 PM</option>
+                    <option value="16:00">4:00 PM</option>
+                </select>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn-secondary" id="cancelTime">Cancel</button>
+                <button type="button" class="btn-primary" id="confirmTime">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-column">
+                <h4>Federal Trade Commission</h4>
+                <ul>
+                    <li><a href="https://www.ftc.gov">FTC.gov</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">News</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Report Fraud</h4>
+                <ul>
+                    <li><a href="report.html">File a Report</a></li>
+                    <li><a href="#">Track Your Report</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Resources</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Consumer Information</a></li>
+                    <li><a href="#">Business Guidance</a></li>
+                    <li><a href="#">Legal Resources</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Federal Trade Commission. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        let selectedAgent = null;
+
+        // Check for ref parameter to show success banner
+        const urlParams = new URLSearchParams(window.location.search);
+        const ref = urlParams.get('ref');
+
+        if (ref === 'confirmation') {
+            const savedReport = localStorage.getItem('ftcReport');
+            if (savedReport) {
+                const reportData = JSON.parse(savedReport);
+                document.getElementById('bannerReportNumber').textContent = reportData.reportNumber || 'FTC-2024-XXXXXX';
+            }
+            document.getElementById('successBanner').classList.add('show');
+        }
+
+        // Modal Functions
+        function openTimeModal(name, email) {
+            selectedAgent = { name, email };
+            document.getElementById('timeModal').classList.add('show');
+        }
+
+        function closeTimeModal() {
+            document.getElementById('timeModal').classList.remove('show');
+            selectedAgent = null;
+        }
+
+        document.getElementById('cancelTime').addEventListener('click', closeTimeModal);
+
+        document.getElementById('confirmTime').addEventListener('click', function() {
+            const date = document.getElementById('appointmentDate').value;
+            const time = document.getElementById('appointmentTime').value;
+            
+            if (!date) {
+                alert('Please select a date');
+                return;
+            }
+            
+            alert(`Appointment scheduled for ${date} at ${time} with ${selectedAgent.name}`);
+            closeTimeModal();
+        });
+
+        function scheduleAppointment(name, email) {
+            alert(`Scheduling appointment with ${name} (${email})`);
+        }
+
+        function agreeAndAssign(name, email) {
+            alert(`Agent ${name} has been assigned to your case! You will receive a confirmation email shortly.`);
+        }
+    </script>
+</body>
+</html>

